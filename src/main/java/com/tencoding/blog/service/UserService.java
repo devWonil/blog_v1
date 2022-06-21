@@ -28,6 +28,9 @@ public class UserService {
 	
 	@Transactional
 	public int saveUser(User user) {
+		// select
+		// insert
+		// update
 		try {
 			userRepository.save(user);
 			return 1;

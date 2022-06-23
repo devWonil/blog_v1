@@ -50,8 +50,11 @@ public class Board {
 	
 	// 댓글정보
 	// 하나의 게시글에 여러개 댓글
+	// one = board, many = reply
+	// mappedBy = "board" board는 reply 테이블에 필드 이름이다. 
 	// mappedBy는 연관관계의 주인이 아니다 (FK 아님)
-	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+	// DB 에 컬럼을 만들지 마시오
+	@OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
 	private List<Reply> reply;
 	
 	@CreationTimestamp

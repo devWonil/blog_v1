@@ -17,7 +17,10 @@ import com.tencoding.blog.service.UserService;
 public class UserApiController {
 	
 	@Autowired
-	UserService userService;
+	private UserService userService;
+	
+	@Autowired
+	private HttpSession httpSession;
 
 	@PostMapping("/api/user")
 	public ResponseDto<Integer> save(@RequestBody User user) {
@@ -31,7 +34,7 @@ public class UserApiController {
 	// /blog/api/user/login
 	
 	@PostMapping("/api/user/login")
-	public ResponseDto<Integer> login(@RequestBody User user, HttpSession httpSession){
+	public ResponseDto<Integer> login(@RequestBody User user){
 		System.out.println("login 호출됨");
 		// 서비스한테 요청
 		User principal = userService.login(user);

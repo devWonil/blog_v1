@@ -14,7 +14,7 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	
 	// spring JPA 네이밍 전략
 	// SELECT * FROM user WHERE username = ?1 AND password = ?2;
-	User findByUsernameAndPassword(String username, String password);
+//	User findByUsernameAndPassword(String username, String password);
 	
 	// 두번째 방법
 //	@Query(value = "SELECT * FROM user WHERE username = ?1 AND password = ?2;")

@@ -26,4 +26,10 @@ public class BoardService {
 	public Page<Board> getBoardList(Pageable pageable){
 		return boardRepository.findAll(pageable);
 	}
+	
+	public Board boardDetail(int boardId) { // 매개변수 : where절 id값
+		return boardRepository.findById(boardId).orElseThrow(() -> {
+			return new IllegalArgumentException("해당글은 찾을 수 없습니다.");
+		});
+	}
 }

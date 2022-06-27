@@ -6,7 +6,7 @@
 	<button class="btn bg-secondary" onclick="history.back();">돌아가기</button>
 	
 	<c:if test="${board.userId.id == principal.user.id}">
-		<button class="btn bg-warning" id="btn-update">수정</button>
+		<a href="/board/${board.id}/update_form" class="btn bg-warning">수정</a>
 		<button class="btn bg-danger" id="btn-delete">삭제</button>
 	</c:if>
 	<br/><br/>

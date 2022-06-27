@@ -3,6 +3,10 @@ let index = {
 		$("#btn-save").bind("click",() => {
 			this.save();
 		});
+		
+		$("#btn-delete").bind("click",() => {
+			this.deleteById();
+		});
 	},
 	save: function(){
 		// data 가져오기
@@ -29,6 +33,23 @@ let index = {
 		})
 		.fail(function(error){
 			alert("글쓰기에 실패하였습니다.");
+		});
+	},
+	
+	deleteById: function() {
+		let id = $("#board-id").text();
+		$.ajax({
+			type:"DELETE",
+			url:"/api/board/" + id
+		})
+		.done(function(data){
+			if(data.status){
+				alert("삭제가 완료되었습니다.");
+				location.href = "/";
+			}
+		})
+		.fail(function(){
+			alert("삭제 실패");
 		});
 	}
 	

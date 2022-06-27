@@ -1,7 +1,17 @@
 package com.tencoding.blog.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.tencoding.blog.model.Board;
+import com.tencoding.blog.service.BoardService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -9,9 +19,13 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class BoardController {
 
+	@Autowired
+	BoardService boardService;
+	
 	@GetMapping({"", "/"})
-	public String index() {
-		return "home";
+	public String index(Model model, @PageableDefault(size = 2, sort="id", direction = Direction.DESC) Pageable pageable) {
+		model.addAttribute("pageable", boardService.getBoardList(pageable));
+		return "index";
 	}
 	
 	@GetMapping("/board/save_form")
@@ -19,4 +33,6 @@ public class BoardController {
 		log.info("saveForm 메소드 호출");
 		return "/board/save_form";
 	}
+	
+	
 }

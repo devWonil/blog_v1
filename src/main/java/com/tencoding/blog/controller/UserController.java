@@ -3,14 +3,23 @@ package com.tencoding.blog.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.tencoding.blog.dto.ResponseDto;
+import com.tencoding.blog.model.User;
+import com.tencoding.blog.service.UserService;
 
 @Controller
 public class UserController {
 	
 	@Autowired
 	private HttpSession httpSession;
+	
+	@Autowired
+	private UserService userService;
 	
 	// .../blog/user/login_form
 	@GetMapping("/auth/login_form")
@@ -33,5 +42,11 @@ public class UserController {
 	@GetMapping("/user/update_form")
 	public String updateForm() {
 		return "user/update_form";
+	}
+	
+	@PostMapping("/auth/joinProc")
+	public String save(User user){
+		int result = userService.saveUser(user);
+		return "redirect:/";
 	}
 }

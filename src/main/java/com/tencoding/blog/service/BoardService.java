@@ -64,7 +64,7 @@ public class BoardService {
 		requestReply.setUser(user);
 		requestReply.setBoard(boardEntity);
 		Reply replyEntity = replyRepository.save(requestReply);
-//		System.out.println("데이터 확인 댓글 : " + replyEntity);
+//		System.out.println("데이터 확인 댓글 : " + replyEntity); 무한 참조 주의
 		return replyEntity;
 	}
 }

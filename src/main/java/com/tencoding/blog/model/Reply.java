@@ -42,7 +42,7 @@ public class Reply {
 	// 하나의 댓글에 여러 유저가 작성할 수 없다
 	@ManyToOne
 	@JoinColumn(name = "userId") // <-- Reply 테이블에 컬럼명이 된다.
-	@JsonIgnoreProperties({"password", "role", "oauth", "emial"})
+	@JsonIgnoreProperties({"password", "role", "oauth", "email"})
 	private User user;
 	
 	@CreationTimestamp

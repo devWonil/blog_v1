@@ -156,20 +156,21 @@ let index = {
 				location.href ="/";
 			}
 		}).fail(function(error){
-			alert("글쓰기에 실패하였습니다")
+			alert("글쓰기에 실패하였습니다");
 		});
 	}
 }
 
 function addReplyElement(reply) {
-	let childElement = `<li class="list-group-item d-flex justify-content-between" id="reply--1" >
+	let childElement = `<li class="list-group-item d-flex justify-content-between" id="reply--${reply.id}" >
 				<div>${reply.content}</div>
 				<div class="d-flex">
 					<div>작성자 : ${reply.user.username}&nbsp;&nbsp;</div>  
 					<button class="badge badge-danger">삭제</button>
 				</div>
 			</li>`;
-	$("#reply--box").prepend(childElement)
+	$("#reply--box").prepend(childElement);
+	$("#reply-content").val("");
 }
 
 index.init();

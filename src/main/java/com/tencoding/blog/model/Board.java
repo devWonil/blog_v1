@@ -3,6 +3,7 @@ package com.tencoding.blog.model;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -54,7 +55,7 @@ public class Board {
 	// 댓글정보
 	// 하나의 게시글에 여러개 댓글
 	// mappedBy는 연관관계의 주인이 아니다 (FK 아님)
-	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"board", "content"}) // Reply 안에 있는 board getter 를 무시해라 (호출이 안됨)
 	@OrderBy("id desc")
 	private List<Reply> replys;

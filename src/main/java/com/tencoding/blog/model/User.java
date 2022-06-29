@@ -30,7 +30,7 @@ public class User {
 	private int id;
 	
 	
-	@Column(nullable = false, length = 30, unique = true)
+	@Column(nullable = false, length = 100, unique = true)
 	private String username;
 	
 	@Column(nullable = false, length = 100)
@@ -47,4 +47,5 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	private RoleType role; // Enum 타입 사용 권장 : admin, user, manager
 	
+	private String oauth; // kakao, google, naver ...
 }

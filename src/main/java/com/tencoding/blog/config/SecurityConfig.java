@@ -35,20 +35,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{ // 커스텀�
 	
 	// 2. 특정 주소 필터를 설정할 예정
 	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable()
-				.authorizeRequests()
-				.antMatchers("/auth/**", "/", "/js/**", "/css/**", "/image/**", "/oauth/**")
-				.permitAll()
-				.anyRequest()
-				.authenticated()
-				.and().formLogin().loginPage("/auth/login_form")
-				.loginProcessingUrl("/auth/loginProc")
-				.defaultSuccessUrl("/"); // loginProc를 만들지 않음(스프링 시큐리티가 가로채서 진행)
-		// 스프링 시큐리티가 해당 주소로 요청이 오면 가로채서 대신 로그인 처리를 해준다.
-		// 단 이 동작을 완료하기 위해서는 만들어야 할 클래스가 있다.
-		// UserDetails type Object를 만들어야 한다.
-	}
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable()
+            .authorizeRequests()
+            .antMatchers("/auth/", "/", "/js/", "/css/", "/image/")
+            .permitAll()
+            .anyRequest()
+            .authenticated()
+        .and()
+            .formLogin()
+            .loginPage("/auth/login_form")
+            .loginProcessingUrl("/auth/loginProc") 
+            .defaultSuccessUrl("/");
+        // 스프링 시큐리티가 해당 주소로 요청이 오면 가로채서 대신 로그인 처리를 해준다. 
+        // 단 이 동작을 완료하기 위해서는 만들어야 할 클래스가 있다. 
+        // UserDetails type  Object 를 만들어야 한다. !!
+    }
 	
 	// 3 시큐리티가 대신 로그인을 해주는데 password를 가로채서 
 	// 해당 패스워드가 무엇으로 해시 처리되었는지 함수를 알려줘야 한다.

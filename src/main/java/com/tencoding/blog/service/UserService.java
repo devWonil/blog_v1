@@ -67,6 +67,13 @@ public class UserService {
 		userEntity.setEmail(user.getEmail());
 	}
 	
+	@Transactional(readOnly = true)
+	public User searchUser(String username) {
+		User userEntity = userRepository.findByUsername(username).orElseGet(() -> {
+			return new User();
+		});
+		return userEntity;
+	}
 //	@Transactional(readOnly = true)
 //	public User login(User user) {
 //		// repository select 요청

@@ -52,7 +52,7 @@ public class Board {
 	// 하나의 게시글에 여러개 댓글
 	// mappedBy는 연관관계의 주인이 아니다 (FK 아님)
 	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
-	private List<Reply> reply;
+	private List<Reply> replys;
 	
 	@CreationTimestamp
 	private Timestamp createDate;

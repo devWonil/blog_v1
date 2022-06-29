@@ -30,7 +30,7 @@ public class User {
 	private int id;
 	
 	
-	@Column(nullable = false, length = 30, unique = true)
+	@Column(nullable = false, length = 100, unique = true)
 	private String username;
 	
 	@Column(nullable = false, length = 100)
@@ -41,6 +41,9 @@ public class User {
 	
 	@CreationTimestamp // 시간이 자동으로 입력됨
 	private Timestamp createDate;
+	
+	private String oauth; // kakao, google, naver  ... 
+	
 	
 	// domain -- 데이터의 범주화
 //	@ColumnDefault(" 'user' ")

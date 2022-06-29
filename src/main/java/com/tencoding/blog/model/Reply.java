@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,11 +36,13 @@ public class Reply {
 	
 	@ManyToOne // 여러개의 댓글은 하나의 게시글에 존재가능
 	@JoinColumn(name = "boardId")
+	@JsonIgnoreProperties({"board", "replys", "content", "user", "userId", "id"})
 	private Board board;
 	
 	// 하나의 댓글에 여러 유저가 작성할 수 없다
 	@ManyToOne
 	@JoinColumn(name = "userId") // <-- Reply 테이블에 컬럼명이 된다.
+	@JsonIgnoreProperties({"password", "role", "oauth", "emial"})
 	private User user;
 	
 	@CreationTimestamp

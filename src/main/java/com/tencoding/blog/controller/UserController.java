@@ -72,8 +72,8 @@ public class UserController {
 	}
 	
 	
-	@GetMapping("")
-	@ResponseBody
+	@GetMapping("/auth/kakao/callback")
+//	@ResponseBody
 	public String kakaoCallback(@RequestParam String code) {
 
 		// HttpsURLConnect ...
@@ -180,7 +180,7 @@ public class UserController {
 //		
 //		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
-		return "test";
+		return "redirect:/";
 	}
 	
 }

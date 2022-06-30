@@ -67,4 +67,10 @@ public class BoardService {
 //		System.out.println("데이터 확인 댓글 : " + replyEntity); 무한 참조 주의
 		return replyEntity;
 	}
+
+	@Transactional
+	public void deleteReplyById(int replyId) {
+		
+		replyRepository.deleteById(replyId);
+	}
 }

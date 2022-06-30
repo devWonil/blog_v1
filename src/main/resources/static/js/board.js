@@ -110,6 +110,7 @@ let index = {
 		.done(function(response) {
 			if(response.status) {
 				addReplyElement(response.data);
+				location.href =`/board/${data.boardId}`;
 			} 
 		})
 		.fail(function(error) {

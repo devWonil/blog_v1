@@ -34,12 +34,12 @@ public class BoardController {
 		int nowPage = pageBoards.getPageable().getPageNumber() + 1;
 		int startPage = Math.max(nowPage - 2, 1);
 		int endPage = Math.min(nowPage + 2, pageBoards.getTotalPages());
-		System.out.println("------------------------------------");
-		log.info("현재 화면의 블록 숫자(현재 페이지) : {} ", nowPage);
-		log.info("현재 화면의 보여질 블록의 시작 번호 : {}" , startPage);
-		log.info("현재 화면의 보여질 마지막 블록의 번호 : {}" , endPage);
-		log.info("화면에 보여줄 총 게시글 / 한 화면에 보여질 게시 글 (총 페이지 숫자)  : {}" , pageBoards.getTotalPages());
-		System.out.println("------------------------------------");
+//		System.out.println("------------------------------------");
+//		log.info("현재 화면의 블록 숫자(현재 페이지) : {} ", nowPage);
+//		log.info("현재 화면의 보여질 블록의 시작 번호 : {}" , startPage);
+//		log.info("현재 화면의 보여질 마지막 블록의 번호 : {}" , endPage);
+//		log.info("화면에 보여줄 총 게시글 / 한 화면에 보여질 게시 글 (총 페이지 숫자)  : {}" , pageBoards.getTotalPages());
+//		System.out.println("------------------------------------");
 		
 		// 페이지 번호를 배열로 만들어 던져주기
 		ArrayList<Integer> pageNumbers = new ArrayList<>();

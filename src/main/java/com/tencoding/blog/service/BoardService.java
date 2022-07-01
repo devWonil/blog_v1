@@ -72,4 +72,8 @@ public class BoardService {
 	public void deleteReplyById(int replyId) {
 		replyRepository.deleteById(replyId);
 	}
+	
+	public Page<Board> searchBoardByTitle(String title, Pageable pageable){
+		return boardRepository.findByTitleContaining(title, pageable);
+	}
 }

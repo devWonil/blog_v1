@@ -25,26 +25,16 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
-	@GetMapping({"", "/"})
-	public String index(Model model, @PageableDefault(size = 5, sort="id", direction = Direction.DESC) Pageable pageable) {
-		Page<Board> pageBoards = boardService.getBoardList(pageable);
-		// [ 1 2 3 4 5 6 7 8 9 10]
-		// 1. 현재 페이지 앞 뒤로 2 블록(칸)씩 보여야한다.
-		// 2. 현재 페이지에 'active' 하기
-		// 3. 페이지 버튼을 누르면 (블록) 해당 페이지로 화면을 이동해야 한다.
-		
-//		int startPage = pageBoards.getPageable().getPageNumber() - 2;
-//		int endPage = pageBoards.getPageable().getPageNumber() + 2;
+	@GetMapping({"", "/", "/board/search"})
+	public String index(String q, Model model, 
+			@PageableDefault(size = 5, sort="id", direction = Direction.DESC) Pageable pageable) {
+		String searchTitle = q == null ? "" : q;
+		Page<Board> pageBoards = boardService.searchBoardByTitle(searchTitle, pageable);
 		
 		int nowPage = pageBoards.getPageable().getPageNumber() + 1;
 		int startPage = Math.max(nowPage - 2, 1); // 두 int 값 중 큰 값을 반환합니다
 		int endPage = Math.min(nowPage + 2, pageBoards.getTotalPages());
-		System.out.println("----------------------");
-		log.info("현재 화면의 블록 숫자(현재페이지) : {}", nowPage);
-		log.info("현재 화면에 보여질 블록의 시작 번호 : {}", startPage);
-		log.info("현재 화면에 보여질 마지막 블록의 번호 : {}", endPage);
-		log.info("화면에 보여줄 총 게시글 / 한 화면에 보여질 게시글 (총 페이지 숫자) : {}", pageBoards.getTotalPages());
-		System.out.println("----------------------");
+		
 		
 		// 시작 페이지를 설정해야한다.
 		
@@ -58,6 +48,7 @@ public class BoardController {
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("pageNumbers", pageNumbers);
+		model.addAttribute("searchTitle", searchTitle);
 		
 		return "index";
 	}

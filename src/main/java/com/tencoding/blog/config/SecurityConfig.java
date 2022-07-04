@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import com.tencoding.blog.auth.PrincipalDetailService;
 
@@ -36,9 +37,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{ // 커스텀�
 	// 2. 특정 주소 필터를 설정할 예정
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable()
+//		http.csrf().disable()
+		http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+				.and()
 				.authorizeRequests()
-				.antMatchers("/auth/**", "/", "/js/**", "/css/**", "/image/**", "/dummy/**")
+				.antMatchers("/auth/**", "/", "/js/**", "/css/**", "/image/**", "/dummy/**", "/test/**")
 				.permitAll()
 				.anyRequest()
 				.authenticated()

@@ -74,6 +74,9 @@ let index = {
 	},
 	
 	update: function() {
+		
+		
+		
 		let boardId = $("#id").val();
 		
 		let data = {
@@ -82,6 +85,7 @@ let index = {
 		}
 		
 		$.ajax({
+			
 			type: "PUT",
 			url: "/api/board/" + boardId,
 			data: JSON.stringify(data),

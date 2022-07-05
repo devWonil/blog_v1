@@ -28,7 +28,7 @@ spring:
   jpa:
     open-in-view: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       use-new-id-generator-mappings: false
@@ -40,6 +40,15 @@ spring:
     serialization:
       fail-on-empty-beans: false
       
-      
+  servlet:
+    multipart:
+      max-file-size: 20MB # 파일 하나의 최대 용량
+      max-request-size: 200MB # 한번에 동시에 보낼 수 있는 파일용량
+        
+        
+# 해당 경로가 없으면 오류! (자바 코드로 경로 만드는 코드 생성)      
+file:
+  path: C:/springImageDir/tecoblog/upload/
+  
 tenco:
   key:  asd1234!     

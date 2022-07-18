@@ -18,7 +18,14 @@
 	</properties>
 	<dependencies>
 		<!-- JSTL -->
-
+		
+				<!-- https://mvnrepository.com/artifact/org.qlrm/qlrm -->
+		<dependency>
+		    <groupId>org.qlrm</groupId>
+		    <artifactId>qlrm</artifactId>
+		    <version>3.0.1</version>
+		</dependency>
+		
 <!-- 추가적인 부분 End -->
 		<!-- 시큐리티 태그 라이브러리 -->
         <dependency>

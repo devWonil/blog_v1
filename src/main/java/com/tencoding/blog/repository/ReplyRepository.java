@@ -6,4 +6,5 @@ import com.tencoding.blog.model.Reply;
 
 public interface ReplyRepository extends JpaRepository<Reply, Integer> {
 
+	
 }

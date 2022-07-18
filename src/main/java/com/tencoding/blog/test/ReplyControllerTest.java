@@ -7,14 +7,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tencoding.blog.dto.ReplyCountOfBoardDto;
 import com.tencoding.blog.model.Board;
 import com.tencoding.blog.model.Reply;
 import com.tencoding.blog.repository.BoardRepository;
+import com.tencoding.blog.repository.ReplyCountOfBoardRepository;
 import com.tencoding.blog.repository.ReplyRepository;
 
 @RestController
 public class ReplyControllerTest {
 
+	@Autowired
+	ReplyCountOfBoardRepository replyCountOfBoardRepository;
+	
 	@Autowired
 	private BoardRepository boardRepository;
 	
@@ -39,4 +44,14 @@ public class ReplyControllerTest {
 	public List<Reply> getReply(){
 		return replyRepository.findAll();
 	}
+	
+	// .../test/group-by-count
+	@GetMapping("/test/group-by-count3")
+	public String test3() {
+		
+		List<ReplyCountOfBoardDto> result = replyCountOfBoardRepository.getReplyCount();
+		
+		return "" + result.toString();
+	}
+	
 }
